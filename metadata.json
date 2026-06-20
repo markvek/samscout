@@ -1,0 +1,6 @@
+{
+  "name": "SamScout",
+  "description": "Scan your company URL, instantly check match percentages with live SAM.gov contracts, perform visual gap analyses, and generate RFP proposal drafts with integrated checkout flows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
