@@ -21,9 +21,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Logo and Constitutional Title */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-usa-blue flex items-center justify-center rounded-sm shrink-0">
-            <div className="w-4 h-4 border-2 border-white rotate-45" />
-          </div>
+          <img src="/src/images.png" alt="SamScout Logo" className="w-8 h-8 object-contain shrink-0" />
           <div>
             <h1 className="text-xl font-serif text-usa-blue font-extrabold tracking-tight uppercase">
               SamScout <span className="font-sans font-normal text-xs text-gray-400 uppercase tracking-widest ml-2">v2.4</span>

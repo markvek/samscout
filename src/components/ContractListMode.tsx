@@ -12,6 +12,8 @@ interface Props {
 export default function ContractListMode({ analysis, opportunities, onBack, onSelectContract }: Props) {
   const [editedEmails, setEditedEmails] = useState<Record<string, string>>({});
   const [oppsWithActiveNotif, setOppsWithActiveNotif] = useState<Record<string, string>>({});
+  const [globalEmail, setGlobalEmail] = useState("");
+  const [isSignedUp, setIsSignedUp] = useState(false);
 
   // Join opportunity objects with match scores
   const matchedData = opportunities.map(opp => {
@@ -87,6 +89,66 @@ export default function ContractListMode({ analysis, opportunities, onBack, onSe
         <p className="text-xs text-gray-500 font-sans mt-0.5">
           👉 <strong className="font-semibold text-usa-blue">Double-click on any contract card</strong> (or click 'Deep Gap Analysis') to view gaps and generate custom templates.
         </p>
+      </div>
+
+      {/* Global Email Alert Signup Box */}
+      <div className="bg-[#002868] text-white rounded-lg border border-navy-800 shadow-md p-5 relative overflow-hidden transition-all duration-300 hover:shadow-lg">
+        {/* Subtle decorative gold line */}
+        <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-[#D4AF37]" />
+        
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10 pl-2">
+          <div className="space-y-1">
+            <h4 className="text-sm font-serif font-bold uppercase tracking-wider text-[#D4AF37] flex items-center gap-1.5">
+              <Mail className="w-4 h-4 text-[#D4AF37]" />
+              Federal Bid Notification Alerts
+            </h4>
+            <p className="text-xs text-slate-200 max-w-xl">
+              Stay updated on new matching government contracts. Enter your email below to subscribe to custom automated matching reports.
+            </p>
+          </div>
+          
+          <div className="w-full md:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            {isSignedUp ? (
+              <div className="flex items-center gap-2 bg-[#001233] px-4 py-2.5 rounded border border-emerald-500/30 text-emerald-400 font-sans text-xs">
+                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Subscribed successfully with <strong className="font-mono text-white font-semibold">{globalEmail}</strong>!</span>
+                <button
+                  onClick={() => setIsSignedUp(false)}
+                  className="text-slate-400 hover:text-white underline font-semibold cursor-pointer ml-2 text-[10px] uppercase font-sans"
+                >
+                  Change
+                </button>
+              </div>
+            ) : (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!globalEmail.trim() || !globalEmail.includes("@")) {
+                    alert("Please enter a valid email address.");
+                    return;
+                  }
+                  setIsSignedUp(true);
+                }}
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full"
+              >
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  value={globalEmail}
+                  onChange={(e) => setGlobalEmail(e.target.value)}
+                  className="bg-[#001233] border border-slate-700 rounded px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4AF37] w-full sm:w-64 font-sans font-medium"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="bg-[#BF0A30] hover:bg-red-700 active:scale-95 text-white font-sans text-xs font-bold uppercase tracking-wider px-4 py-2 rounded shadow transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5"
+                >
+                  Subscribe
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* The Matched list */}
