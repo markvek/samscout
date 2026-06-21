@@ -269,8 +269,8 @@ export default function App() {
 
       {/* Styled Footer */}
       <footer className="border-t border-gray-250 bg-slate-100 text-gray-500 py-6 text-center text-xs space-y-2 mt-8">
-        <div className="flex justify-center items-center gap-1 opacity-90 text-navy-800">
-          <Shield className="w-4 h-4 text-usa-blue" />
+        <div className="flex justify-center items-center gap-2 opacity-95 text-navy-800">
+          <img src="/src/images.png" alt="SamScout Logo" className="w-5 h-5 object-contain" />
           <span className="font-serif font-black tracking-widest text-[10px]">FEDMATCH REGISTER SYSTEMS BOARD</span>
         </div>
         <p className="font-sans">
